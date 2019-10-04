@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { observer, Provider, inject } from "mobx-react";
+import { observable, decorate } from "mobx";
 
-function App() {
+import stores from './store'
+
+class State {
+  text = ""
+  onChange = e => this.text = e.target.value
+};
+
+decorate(State, { text: observable })
+
+const appState = new State()
+
+const App = inject('store')(inject('playlist')(
+  observer(({ store: {text, onChange}, playlist }) => {
+    console.log(playlist)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      Display: {text} <br />
+      <input type="text" onChange={onChange} />
+
+      <button onClick={() => playlist.addSongToPlaylist(Math.random())}>+</button>
+
+      {playlist.songs.map((s) => <div>{s}</div>)}
     </div>
-  );
+  )
+})))
+
+const Blah = () => {
+  return (
+    <Provider {...stores} store={appState}>
+      <App />
+    </Provider>
+  )
 }
 
-export default App;
+export default Blah;
