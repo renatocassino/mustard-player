@@ -38,7 +38,7 @@ const LoaderAudio = ({
       url,
     }
 
-    playlist.addSongToPlaylist({ mediaInfo: newState })
+    playlist.addSongToPlaylist({ mediaInfo: newState, cuePoints: [] })
     if (mustLoad) window.wavesurfer.load(url)
   }
 

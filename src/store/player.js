@@ -8,6 +8,10 @@ class Player {
     this.isPlaying = !this.isPlaying
   }
 
+  toggleActiveLoop() {
+    this.loopActive = !this.loopActive
+  }
+
   stop() {
     this.isPlaying = false
   }

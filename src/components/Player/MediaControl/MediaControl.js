@@ -5,7 +5,7 @@ import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
 import RaisedButton from 'material-ui/RaisedButton'
 import Slider from 'material-ui/Slider'
 import { withState } from 'recompose'
-import { lifecycle, compose, getContext } from 'recompose'
+import { lifecycle, compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
 // import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
 

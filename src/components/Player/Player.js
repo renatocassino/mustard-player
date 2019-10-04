@@ -7,7 +7,8 @@ import MediaInfo from './MediaInfo'
 import Playlist from './Playlist'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
-import MediaControl from './MediaControl'
+import { MediaControl } from './MediaControl/'
+import CuePoint from './MediaControl/CuePoint'
 
 const Player = ({ playlist }) => {
   const [shouldRender, setShouldRender] = useState(false)
@@ -38,6 +39,7 @@ const Player = ({ playlist }) => {
       <WaveWidget />
       <MediaInfo />
       <MediaControl wavesurfer={wavesurfer} />
+      <CuePoint wavesurfer={wavesurfer} />
       <LoaderAudio wavesurfer={wavesurfer} />
       <Playlist wavesurfer={wavesurfer} />
     </div>

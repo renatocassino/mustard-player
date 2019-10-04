@@ -1,12 +1,6 @@
-import {
-  updateCuePoint
-} from '../../../store/actions'
 import { regionToCuePoint } from '../convert'
 
-export function regionUpdated(region) {
-  const { store } = this.props
-  const { dispatch } = store
-
+export default playlist => region => {
   const cuePoint = regionToCuePoint(region)
-  dispatch(updateCuePoint(cuePoint))
+  playlist.updateCuePoint(cuePoint)
 }

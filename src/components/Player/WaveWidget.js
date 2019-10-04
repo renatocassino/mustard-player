@@ -5,8 +5,8 @@ import {
   playAndPause,
   stop,
   ready,
-  // regionCreated,
-  // regionUpdated,
+  regionCreated,
+  regionUpdated,
 } from './events'
 import { compose } from 'recompose'
 import { inject } from 'mobx-react'
@@ -30,8 +30,8 @@ const WaveWidget = ({ player, playlist }) => {
     wavesurfer.on('pause', playAndPause(player))
     wavesurfer.on('stop', stop(player))
     wavesurfer.on('ready', ready({ player, playlist }))
-    // wavesurfer.on('region-created', regionCreated.bind(this))
-    // wavesurfer.on('region-update-end', regionUpdated.bind(this))
+    wavesurfer.on('region-created', regionCreated(playlist))
+    wavesurfer.on('region-update-end', regionUpdated(playlist))
 
     window.wavesurfer = wavesurfer
   }, [])

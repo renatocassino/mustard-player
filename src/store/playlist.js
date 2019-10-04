@@ -15,6 +15,26 @@ class Playlist {
       this.currentSong = 0
     }
   }
+
+  addCuePoint(cuePoint) {
+    if (!this.song) return
+    this.song.cuePoints.push(cuePoint)
+  }
+
+  updateCuePoint(cuePoint) {
+    if (!this.song) return
+
+    this.song.cuePoints = this.song.cuePoints.map((currentCuePoint) => {
+      return currentCuePoint.id === cuePoint.id
+        ? cuePoint
+        : currentCuePoint
+    })
+  }
+
+  removeCuePoint(id) {
+    if (!this.song) return
+    this.song.cuePoints = this.song.cuePoints.filter((cuePoint) => cuePoint.id !== id)
+  }
 }
 
 decorate(Playlist, {
