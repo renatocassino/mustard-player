@@ -1,8 +1,23 @@
-import { observable } from 'mobx';
+import { observable, decorate, computed } from 'mobx';
 
-const Player = observable({
-  isPlaying: observable.box(false),
-  loopActive: observable.box(false),
-});
+class Player {
+  isPlaying = false
+  loopActive = false
 
-export default Player
+  togglePlaying() {
+    this.isPlaying = !this.isPlaying
+  }
+
+  stop() {
+    this.isPlaying = false
+  }
+}
+
+decorate(Player, {
+  isPlaying: observable,
+  loopActive: observable,
+})
+
+const player = new Player()
+
+export default player

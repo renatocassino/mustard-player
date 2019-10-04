@@ -1,4 +1,4 @@
-import { observable, decorate } from 'mobx';
+import { observable, decorate, computed } from 'mobx';
 
 class Playlist {
   currentSong = null
@@ -20,6 +20,7 @@ class Playlist {
 decorate(Playlist, {
   currentSong: observable,
   songs: observable,
+  song: computed,
 })
 
 const playlist = new Playlist()

@@ -1,0 +1,49 @@
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import uuidv4 from 'uuid/v4'
+import {
+  playAndPause,
+  stop,
+  ready,
+  // regionCreated,
+  // regionUpdated,
+} from './events'
+import { compose } from 'recompose'
+import { inject } from 'mobx-react'
+
+const id = uuidv4()
+
+const wavesurferSettings = {
+  container: '#waveform',
+  waveColor: 'violet',
+  progressColor: 'purple',
+  splitChannels: true,
+  height: 64,
+  barWidth: 0
+}
+
+const WaveWidget = ({ player, playlist }) => {
+  useEffect(() => {
+    const wavesurfer = window.WaveSurfer.create(wavesurferSettings)
+
+    wavesurfer.on('play', playAndPause(player))
+    wavesurfer.on('pause', playAndPause(player))
+    wavesurfer.on('stop', stop(player))
+    wavesurfer.on('ready', ready({ player, playlist }))
+    // wavesurfer.on('region-created', regionCreated.bind(this))
+    // wavesurfer.on('region-update-end', regionUpdated.bind(this))
+
+    window.wavesurfer = wavesurfer
+  }, [])
+
+  return (
+    <div className="player__wave" id="waveform" />
+  )
+}
+
+const enhance = compose(
+  inject('player'),
+  inject('playlist')
+)
+
+export default enhance(WaveWidget)

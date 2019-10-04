@@ -1,9 +1,14 @@
-import React from 'react';
-import './App.css';
-import { observer, Provider, inject } from "mobx-react";
-import { observable, decorate } from "mobx";
+import React from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { observer, Provider, inject } from "mobx-react"
+import { observable, decorate } from "mobx"
+import { compose } from 'recompose'
+import { Player } from './components/Player'
+import './App.css'
 
 import stores from './store'
+
+window.store = stores
 
 class State {
   text = ""
@@ -14,26 +19,28 @@ decorate(State, { text: observable })
 
 const appState = new State()
 
-const App = inject('store')(inject('playlist')(
-  observer(({ store: {text, onChange}, playlist }) => {
-    console.log(playlist)
+const App = ({ store: {text, onChange} }) => {
   return (
     <div>
       Display: {text} <br />
       <input type="text" onChange={onChange} />
-
-      <button onClick={() => playlist.addSongToPlaylist(Math.random())}>+</button>
-
-      {playlist.songs.map((s) => <div>{s}</div>)}
+      <Player />
     </div>
   )
-})))
+}
+
+const AppDecorated = compose(
+  inject('store'),
+  observer,
+)(App)
 
 const Blah = () => {
   return (
-    <Provider {...stores} store={appState}>
-      <App />
-    </Provider>
+    <MuiThemeProvider>
+      <Provider {...stores} store={appState}>
+        <AppDecorated />
+      </Provider>
+    </MuiThemeProvider>
   )
 }
 
