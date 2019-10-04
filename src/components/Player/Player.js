@@ -7,8 +7,8 @@ import MediaInfo from './MediaInfo'
 import Playlist from './Playlist'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
-import { MediaControl } from './MediaControl/'
-import CuePoint from './MediaControl/CuePoint'
+import MediaControl from './MediaControl'
+import CuePoint from './CuePoint'
 
 const Player = ({ playlist }) => {
   const [shouldRender, setShouldRender] = useState(false)

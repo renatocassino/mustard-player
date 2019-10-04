@@ -8,11 +8,15 @@ class Playlist {
     return this.songs[this.currentSong]
   }
 
-  addSongToPlaylist(song) {
+  addSongToPlaylist(song, mustLoad = false) {
     this.songs.push(song)
 
     if (this.currentSong === null) {
       this.currentSong = 0
+    }
+
+    if (mustLoad) {
+      this.currentSong = this.songs.length - 1
     }
   }
 

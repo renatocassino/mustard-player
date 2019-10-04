@@ -7,7 +7,7 @@ import Slider from 'material-ui/Slider'
 import { withState } from 'recompose'
 import { lifecycle, compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
-// import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
+import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
 
 const volumes = [
   {value: 0, icon: 'off'},
@@ -61,6 +61,7 @@ const MediaControl = ({
 
 const enhance = compose(
   inject('player'),
+  inject('playlist'),
   lifecycle({
     componentDidMount() {
       if(typeof window === 'undefined') return
@@ -80,13 +81,13 @@ const enhance = compose(
         if(ev.which >= KEY_1 && ev.which <= KEY_1+8) {
 
           const codeKey = ev.which - KEY_1
-          const { cuePoints } = this.props.currentSong
+          const { cuePoints } = this.props.playlist.song
 
           if(codeKey >= cuePoints.length) return
           const cuePoint = cuePoints[codeKey]
 
           if(ev.shiftKey) {
-            // deleteCuePoint(this.props.store, cuePoint, this.props.wavesurfer)
+            deleteCuePoint(this.props.playlist, cuePoint, this.props.wavesurfer)
             return
           }
 
@@ -96,12 +97,12 @@ const enhance = compose(
         }
 
         if(ev.which === KEY_L) {
-          // toggleActive(this.props.store, this.props.wavesurfer)
+          toggleActive(this.props.player, this.props.wavesurfer)
           return
         }
 
         if(ev.which === KEY_N) {
-          // addLoop(this.props.store, this.props.wavesurfer, this.props.currentSong)
+          addLoop(this.props.player, this.props.wavesurfer, this.props.playlist)
           return
         }
 
