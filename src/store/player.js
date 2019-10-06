@@ -4,6 +4,10 @@ class Player {
   isPlaying = false
   loopActive = false
 
+  setIsPlaying(playing) {
+    this.isPlaying = playing
+  }
+
   togglePlaying() {
     this.isPlaying = !this.isPlaying
   }

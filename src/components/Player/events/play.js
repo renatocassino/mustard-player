@@ -1,3 +1,3 @@
 export default player => () => {
-  player.togglePlaying()
+  player.setIsPlaying(true)
 }

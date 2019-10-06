@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import uuidv4 from 'uuid/v4'
 import {
-  playAndPause,
+  play,
   stop,
   ready,
   regionCreated,
   regionUpdated,
+  pause,
 } from './events'
 import { compose } from 'recompose'
 import { inject } from 'mobx-react'
@@ -26,8 +27,8 @@ const WaveWidget = ({ player, playlist }) => {
   useEffect(() => {
     const wavesurfer = window.WaveSurfer.create(wavesurferSettings)
 
-    wavesurfer.on('play', playAndPause(player))
-    wavesurfer.on('pause', playAndPause(player))
+    wavesurfer.on('play', play(player))
+    wavesurfer.on('pause', pause(player))
     wavesurfer.on('stop', stop(player))
     wavesurfer.on('ready', ready({ player, playlist }))
     wavesurfer.on('region-created', regionCreated(playlist))
