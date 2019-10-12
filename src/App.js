@@ -5,6 +5,7 @@ import { Player } from './components/Player'
 import TutorialBar from './components/TutorialBar'
 import stores from './store'
 import { AutoCompleteRhyme } from './components/AutoCompleteRhyme'
+import { version } from '../package.json'
 import './App.css'
 
 window.store = stores
@@ -24,6 +25,7 @@ const App = () => {
           <Player />
           <TutorialBar />
           <AutoCompleteRhyme />
+          Version {version}
         </div>
       </Provider>
     </MuiThemeProvider>
