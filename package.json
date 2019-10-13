@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "push-dir --dir=build --branch=gh-pages --cleanup"
+    "deploy": "push-dir --dir=build --branch=gh-pages --cleanup",
+    "deploy:full": "PUBLIC_URL=https://tacnoman.github.io/mustard-player/ yarn build && yarn deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
