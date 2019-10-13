@@ -14,7 +14,7 @@ const App = () => {
   let baseUrl = ''
 
   if (typeof window !== 'undefined' && window.location.host.match(/github/i)) {
-    baseUrl = 'https://raw.githubusercontent.com/tacnoman/rapletter/master/public'
+    baseUrl = 'https://raw.githubusercontent.com/tacnoman/mustard-player/master/public'
   }
 
   return (
