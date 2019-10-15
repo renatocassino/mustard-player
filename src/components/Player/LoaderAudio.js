@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import PropType from 'prop-types'
 import { inject } from "mobx-react"
 import { compose } from 'recompose';
 import RaisedButton from 'material-ui/RaisedButton'

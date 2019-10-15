@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import ListOfWords from './ListOfWords'
 import TextField from '@material-ui/core/TextField'
+import Card from '@material-ui/core/Card'
 
 const AutoCompleteRhyme = () => {
   const [word, setWord] = useState('')
 
   return (
-    <div>
+    <Card>
       <TextField
           id="standard-name"
           label="Word to rhyme"
@@ -17,7 +18,7 @@ const AutoCompleteRhyme = () => {
         />
 
         <ListOfWords word={word} />
-    </div>
+    </Card>
   )
 }
 

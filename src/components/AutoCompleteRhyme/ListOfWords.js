@@ -26,7 +26,6 @@ const ListOfWords = ({
 
   return (
     <div>
-      List
       <List dense>
         {listOfWords && listOfWords.length === 0 && (
           <ListItem>

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import Icon from 'react-fa'
 import { List, ListItem } from 'material-ui/List'
 import Subheader from 'material-ui/Subheader'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
+import CloseIcon from '@material-ui/icons/Close'
 
 const Playlist = ({ wavesurfer, playlist }) => {
   const deleteSong = (songId) => {
@@ -26,7 +26,11 @@ const Playlist = ({ wavesurfer, playlist }) => {
             }}
             style={{ backgroundColor: idx !== playlist.currentSong ? '#FAFAFA' : '#DCEDC8' }}
             primaryText={song.mediaInfo.title}
-            rightIcon={<a onClick={(ev) => { ev.stopPropagation(); deleteSong(idx) }}>X</a>}
+            rightIcon={
+              <a onClick={(ev) => { ev.stopPropagation(); deleteSong(idx) }}>
+                <CloseIcon />
+              </a>
+            }
           />
         )
       })}

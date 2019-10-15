@@ -1,30 +1,30 @@
 import React from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import { Provider } from "mobx-react"
 import { Player } from './components/Player'
 import TutorialBar from './components/TutorialBar'
 import stores from './store'
 import { AutoCompleteRhyme } from './components/AutoCompleteRhyme'
+import Container from '@material-ui/core/Container'
 import { version } from '../package.json'
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import Logo from './components/Logo'
 import './App.css'
 
-window.store = stores
-
 const App = () => {
-  let baseUrl = ''
-
-  if (typeof window !== 'undefined' && window.location.host.match(/github/i)) {
-    baseUrl = 'https://raw.githubusercontent.com/tacnoman/mustard-player/master/public'
-  }
-
   return (
-    <MuiThemeProvider>
+    <MuiThemeProvider
+      //muiTheme={getMuiTheme(darkBaseTheme)}
+    >
       <Provider {...stores}>
         <div>
-          <div><img src={`${baseUrl}/logo.png`} alt="Mustard Player" /></div>
-          <Player />
-          <TutorialBar />
-          <AutoCompleteRhyme />
+          <Container>
+            <Logo />
+            <Player />
+            <TutorialBar />
+            <AutoCompleteRhyme />
+          </Container>
           Version {version}
         </div>
       </Provider>

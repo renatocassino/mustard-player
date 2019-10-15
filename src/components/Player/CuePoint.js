@@ -2,11 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { fancyTimeFormat } from '../../helpers/time'
 import { Icon } from 'react-fa'
-import IconButton from 'material-ui/IconButton'
+import IconButton from '@material-ui/core/IconButton'
+import PlayIcon from '@material-ui/icons/PlayArrowOutlined'
+import DeleteIcon from '@material-ui/icons/Delete'
 import { colorGenerator } from '../../helpers/colorGenerator'
 import { inject, observer } from 'mobx-react'
-import './CuePoint.css'
 import { compose } from 'recompose'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import TextField from '@material-ui/core/TextField'
 
 export const deleteCuePoint = (playlist, cuePoint, wavesurfer) => {
   playlist.removeCuePoint(cuePoint.id)
@@ -43,25 +47,42 @@ const CuePoint = inject('playlist')(({
   wavesurfer,
   playlist,
 }) => (
-  <a className="cue-point__point">
-    <div className="cue-point__column">
-      <button onClick={() => {
-        const seekTo = cuePoint.start / wavesurfer.getDuration()
-        wavesurfer.seekTo(seekTo)
-      }}>
-        <Icon name="play" />
-      </button>
-    </div>
-    <div className="cue-point__timers">
-      <input type="time" readOnly value={fancyTimeFormat(cuePoint.start || 0)} />
-      <input type="time" readOnly value={fancyTimeFormat(cuePoint.end || 0)} />
-    </div>
-    <Icon
-      name="minus"
-      className="cue-point__btn-close"
-      onClick={() => deleteCuePoint(playlist, cuePoint, wavesurfer)}
+  <Card>
+    <CardHeader
+      avatar={
+        <IconButton aria-label="settings" onClick={() => {
+          const seekTo = cuePoint.start / wavesurfer.getDuration()
+          wavesurfer.seekTo(seekTo)
+        }}>
+          <PlayIcon />
+        </IconButton>
+      }
+      title={
+        <div>
+          <TextField
+            type="time"
+            readOnly
+            label="Start at"
+            value={fancyTimeFormat(cuePoint.start || 0)}
+          />
+          <TextField
+            type="time"
+            label="Finish at"
+            readOnly
+            value={fancyTimeFormat(cuePoint.end || 0)}
+          />
+        </div>
+      }
+      action={
+        <IconButton
+          aria-label="Delete"
+          onClick={() => deleteCuePoint(playlist, cuePoint, wavesurfer)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      }
     />
-  </a>
+  </Card>
 ))
 
 CuePoint.protoTypes = {
