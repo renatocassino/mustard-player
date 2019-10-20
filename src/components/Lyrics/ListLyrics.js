@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
+import { List, ListItem } from '@material-ui/core'
 
 const ListLyrics = ({
   lyrics,
@@ -16,9 +17,15 @@ const ListLyrics = ({
 
   return (
     <div>
-      {lyrics.list.map(lyric => (
-        <div>{lyric.title}</div>
-      ))}
+      <List>
+        {lyrics.list.map(lyric => (
+          <ListItem
+            key={lyric.id}
+          >
+            {lyric.title}
+          </ListItem>
+        ))}
+      </List>
     </div>
   )
 }

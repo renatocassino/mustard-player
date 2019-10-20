@@ -12,6 +12,7 @@ import { version } from '../package.json'
 import Logo from './components/Logo'
 import Lyrics from './components/Lyrics'
 import './App.css'
+import { Grid } from '@material-ui/core'
 
 window.store = stores
 
@@ -25,9 +26,15 @@ const App = () => {
           <Container>
             <Logo />
             <Player />
+            <Grid container>
+              <Grid item xs={3}>
+                <AutoCompleteRhyme />
+              </Grid>
+              <Grid item>
+                <Lyrics />
+              </Grid>
+            </Grid>
             <TutorialBar />
-            <AutoCompleteRhyme />
-            <Lyrics />
           </Container>
           Version {version}
         </div>
