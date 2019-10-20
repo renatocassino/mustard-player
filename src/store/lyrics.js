@@ -10,6 +10,21 @@ class Lyrics {
     const lyrics = await getLyrics()
     this.list = lyrics.data
   }
+
+  newLyric() {
+    this.lyric = {
+      title: '',
+      lyric: '',
+    }
+  }
+
+  resetLyric() {
+    this.lyric = null
+  }
+
+  setLyricById(id) {
+    this.lyric = this.list.find(lyric => lyric.id === id)
+  }
 }
 
 decorate(Lyrics, {
