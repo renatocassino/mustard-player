@@ -10,7 +10,10 @@ import Container from '@material-ui/core/Container'
 import { version } from '../package.json'
 // import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import Logo from './components/Logo'
+import Lyrics from './components/Lyrics'
 import './App.css'
+
+window.store = stores
 
 const App = () => {
   return (
@@ -24,6 +27,7 @@ const App = () => {
             <Player />
             <TutorialBar />
             <AutoCompleteRhyme />
+            <Lyrics />
           </Container>
           Version {version}
         </div>
