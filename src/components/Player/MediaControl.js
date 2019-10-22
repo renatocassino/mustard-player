@@ -67,6 +67,7 @@ const enhance = compose(
       if(typeof window === 'undefined') return
 
       document.addEventListener('keydown', (ev) => {
+        if (ev.target.tagName !== 'BODY') return
         const KEY_1 = 49
         const KEY_A = 65
         const KEY_D = 68
@@ -79,7 +80,6 @@ const enhance = compose(
         const KEY_ENTER = 13
 
         if(ev.which >= KEY_1 && ev.which <= KEY_1+8) {
-
           const codeKey = ev.which - KEY_1
           const { cuePoints } = this.props.playlist.song
 

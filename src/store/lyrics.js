@@ -1,4 +1,4 @@
-import { observable, decorate, computed } from 'mobx'
+import { observable, decorate } from 'mobx'
 import { getLyrics } from '../api/lyrics'
 
 class Lyrics {
@@ -23,7 +23,20 @@ class Lyrics {
   }
 
   setLyricById(id) {
-    this.lyric = this.list.find(lyric => lyric.id === id)
+    const lyric = this.list.find(lyric => lyric.id === id)
+    if (lyric) this.lyric = {...lyric}
+  }
+
+  setTitle(title) {
+    this.lyric.title = title
+  }
+
+  setLyric(lyric) {
+    this.lyric.lyric = lyric
+  }
+
+  saveLyric() {
+    
   }
 }
 

@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton'
 
 const ListLyrics = ({
   lyrics,
-  user,
 }) => {
   useEffect(() => {
     lyrics.loadLyrics()
@@ -38,7 +37,6 @@ const ListLyrics = ({
 
 const enhance = compose(
   inject('lyrics'),
-  inject('user'),
   observer,
 )
 
