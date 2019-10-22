@@ -27,3 +27,16 @@ export const saveLyric = async (lyric) => {
     console.log(error)
   }
 }
+
+export const deleteLyric = async (id) => {
+  try {
+    const response = await fetch(`/api/v1/lyrics/${id}`, {
+      method: 'DELETE',
+    })
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

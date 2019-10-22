@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
-import { List, ListItem } from '@material-ui/core'
+import { List, ListItem, ListItemSecondaryAction } from '@material-ui/core'
 import PlusOne from '@material-ui/icons/AddCircleOutline'
 import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const ListLyrics = ({
   lyrics,
@@ -28,6 +29,12 @@ const ListLyrics = ({
             key={lyric.id}
           >
             {lyric.title}
+
+            <ListItemSecondaryAction>
+              <a onClick={(ev) => { ev.stopPropagation(); lyrics.delete(lyric.id) }}>
+                <DeleteIcon />
+              </a>
+            </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>

@@ -1,5 +1,5 @@
 import { observable, decorate } from 'mobx'
-import { getLyrics, saveLyric } from '../api/lyrics'
+import { getLyrics, saveLyric, deleteLyric } from '../api/lyrics'
 
 class Lyrics {
   lyric = null
@@ -38,6 +38,10 @@ class Lyrics {
   async saveLyric() {
     const { data } = await saveLyric(this.lyric)
     this.lyric = data
+  }
+
+  delete(id) {
+    deleteLyric(id)
   }
 }
 
