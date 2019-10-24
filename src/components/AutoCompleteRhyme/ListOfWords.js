@@ -3,7 +3,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import debounce from 'lodash/debounce'
-import { getWordsToRhyme } from './api'
+import { getWordsToRhyme } from '../../api/rhyme'
 
 const debounceGet = debounce((currentWord, setListOfWords) => {
   getWordsToRhyme(currentWord).then(list => {

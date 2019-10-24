@@ -22,11 +22,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "API_URL=\"http://api.mustardplayer.io\" PUBLIC_URL=\"http://mustardplayer.io/\" react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "push-dir --dir=build --branch=gh-pages --cleanup",
-    "deploy:full": "PUBLIC_URL=http://mustardplayer.io/ yarn build && echo 'mustardplayer.io' > build/CNAME && yarn deploy"
+    "deploy:full": "yarn build && echo 'mustardplayer.io' > build/CNAME && yarn deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
