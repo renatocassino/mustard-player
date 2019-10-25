@@ -8,7 +8,9 @@ class Lyrics {
   async loadLyrics() {
     if (this.list) return
     const lyrics = await getLyrics()
-    this.list = lyrics.data
+    if (lyrics) {
+      this.list = lyrics.data
+    }
   }
 
   newLyric() {
@@ -36,8 +38,12 @@ class Lyrics {
   }
 
   async saveLyric() {
-    const { data } = await saveLyric(this.lyric)
-    this.lyric = data
+    const response = await saveLyric(this.lyric)
+    if (response) {
+      debugger
+      const { data } = response
+      this.lyric = data
+    }
   }
 
   delete(id) {

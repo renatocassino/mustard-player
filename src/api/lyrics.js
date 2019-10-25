@@ -15,7 +15,7 @@ export const saveLyric = async (lyric) => {
     const url = lyric.id
       ? `api/v1/lyrics/${lyric.id}`
       : 'api/v1/lyrics'
-    
+
     const response = await fetch(url, {
       method: lyric.id ? 'PUT' : 'POST',
       body: JSON.stringify(lyric)
