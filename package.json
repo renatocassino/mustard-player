@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "API_URL=\"http://api.mustardplayer.io\" PUBLIC_URL=\"http://mustardplayer.io/\" react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "push-dir --dir=build --branch=gh-pages --cleanup",

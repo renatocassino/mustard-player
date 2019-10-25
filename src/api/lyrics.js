@@ -2,7 +2,7 @@ import fetch from './fetchFactory'
 
 export const getLyrics = async () => {
   try {
-    const response = await fetch('/api/v1/lyrics')
+    const response = await fetch('api/v1/lyrics')
     const data = await response.json()
     return data
   } catch (error) {
@@ -13,8 +13,8 @@ export const getLyrics = async () => {
 export const saveLyric = async (lyric) => {
   try {
     const url = lyric.id
-      ? `/api/v1/lyrics/${lyric.id}`
-      : '/api/v1/lyrics'
+      ? `api/v1/lyrics/${lyric.id}`
+      : 'api/v1/lyrics'
     
     const response = await fetch(url, {
       method: lyric.id ? 'PUT' : 'POST',
@@ -30,7 +30,7 @@ export const saveLyric = async (lyric) => {
 
 export const deleteLyric = async (id) => {
   try {
-    const response = await fetch(`/api/v1/lyrics/${id}`, {
+    const response = await fetch(`api/v1/lyrics/${id}`, {
       method: 'DELETE',
     })
 
