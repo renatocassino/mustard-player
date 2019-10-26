@@ -25,6 +25,7 @@ export const saveLyric = async (lyric) => {
     return data
   } catch (error) {
     console.log(error)
+    return null
   }
 }
 

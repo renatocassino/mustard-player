@@ -1,6 +1,11 @@
 import { observable, decorate } from 'mobx'
 import { getLyrics, saveLyric, deleteLyric } from '../api/lyrics'
 
+const initialStateLyric = {
+  title: '',
+  lyric: '',
+}
+
 class Lyrics {
   lyric = null
   list = null
@@ -14,10 +19,7 @@ class Lyrics {
   }
 
   newLyric() {
-    this.lyric = {
-      title: '',
-      lyric: '',
-    }
+    this.lyric = { ...initialStateLyric }
   }
 
   resetLyric() {
@@ -39,15 +41,25 @@ class Lyrics {
 
   async saveLyric() {
     const response = await saveLyric(this.lyric)
-    if (response) {
-      debugger
-      const { data } = response
-      this.lyric = data
-    }
+    if (response) this.updateLyric(response.data)
+    this.resetLyric()
   }
 
-  delete(id) {
-    deleteLyric(id)
+  updateLyric(data) {
+    this.lyric = data
+    this.list = this.list.map(lyric => lyric.id === data.id
+      ? data
+      : lyric
+    )
+  }
+
+  async delete(id) {
+    await deleteLyric(id)
+    this.lyric = null
+    this.list = this.list.map(lyric => lyric.id === id
+      ? null
+      : lyric
+    ).filter(l => l)
   }
 }
 

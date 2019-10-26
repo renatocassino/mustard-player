@@ -30,7 +30,7 @@ const App = () => {
               <Grid item xs={3}>
                 <AutoCompleteRhyme />
               </Grid>
-              <Grid item>
+              <Grid item xs={9}>
                 <Lyrics />
               </Grid>
             </Grid>
