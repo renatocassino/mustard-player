@@ -9,6 +9,7 @@ const initialStateLyric = {
 class Lyrics {
   lyric = null
   list = null
+  loading = false
 
   async loadLyrics() {
     if (this.list) return
@@ -40,9 +41,16 @@ class Lyrics {
   }
 
   async saveLyric() {
-    const response = await saveLyric(this.lyric)
-    if (response) this.updateLyric(response.data)
-    this.resetLyric()
+    try {
+      this.loading = true
+      const response = await saveLyric(this.lyric)
+      if (response) this.updateLyric(response.data)
+      this.resetLyric()
+    } catch (e) {
+      console.log(e)
+    } finally {
+      this.loading = false
+    }
   }
 
   updateLyric(data) {
@@ -66,6 +74,7 @@ class Lyrics {
 decorate(Lyrics, {
   lyric: observable,
   list: observable,
+  loading: observable,
 })
 
 const lyric = new Lyrics()

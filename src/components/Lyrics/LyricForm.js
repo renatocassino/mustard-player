@@ -18,17 +18,17 @@ const LyricForm = ({
     </IconButton>
 
     <div>
-      <FormControl>
+      <FormControl fullWidth>
         <InputLabel htmlFor="my-input">Title</InputLabel>
-        <Input onChange={ev => lyrics.setTitle(ev.target.value)} id="my-input" aria-describedby="title" value={lyrics.lyric.title} />
+        <Input fullWidth onChange={ev => lyrics.setTitle(ev.target.value)} id="my-input" aria-describedby="title" value={lyrics.lyric.title} />
         <FormHelperText id="title">Title of your lyric.</FormHelperText>
       </FormControl>
     </div>
 
     <div>
-      <FormControl>
+      <FormControl fullWidth>
         <InputLabel htmlFor="lyric-input">Lyric</InputLabel>
-        <Input onChange={ev => lyrics.setLyric(ev.target.value)} id="lyric-input" multiline aria-describedby="lyric" value={lyrics.lyric.lyric} />
+        <Input rows={5} fullWidth onChange={ev => lyrics.setLyric(ev.target.value)} id="lyric-input" multiline aria-describedby="lyric" value={lyrics.lyric.lyric} />
         <FormHelperText id="lyric">Write your lyric here</FormHelperText>
       </FormControl>
     </div>

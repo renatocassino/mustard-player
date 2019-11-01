@@ -18,6 +18,8 @@ const Lyrics = ({
     }
   }, []);
 
+  if (lyrics.loading) return <div>Loading....</div>
+
   return (
     <Card>
       {user.logged
