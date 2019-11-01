@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { inject } from "mobx-react"
 import { compose } from 'recompose';
-import RaisedButton from 'material-ui/RaisedButton'
+import Button from '@material-ui/core/Button'
 import { fancyTimeFormat } from '../../helpers/time'
 
 const loadAudioBuffer = (arrayBuffer) => {
@@ -90,12 +90,13 @@ const LoaderAudio = ({
       <div>
         <h3>Load your files here</h3>
       </div>
-      <RaisedButton
-        label="Choose a song"
-        labelPosition="before"
-        style={{ margin: 12 }}
-        containerElement="label"
+      <Button
+        label
+        style={{ margin: 12, cursor: 'pointer' }}
+        variant="contained"
+        color="primary"
       >
+        Choose a song
         <input type="file" id="mediaFile" style={{
           cursor: 'pointer',
           position: 'absolute',
@@ -107,7 +108,7 @@ const LoaderAudio = ({
           opacity: 0,
         }} onChange={setNewSong}
         accept="audio/*" />
-      </RaisedButton>
+      </Button>
     </div>
   )
 }

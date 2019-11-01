@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Subheader from 'material-ui/Subheader'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -19,7 +18,6 @@ const Playlist = ({ wavesurfer, playlist }) => {
 
   return (
     <List>
-      <Subheader>Playlist</Subheader>
       {playlist.songs.map((song, idx) => {
         return (
           <ListItem button key={idx}

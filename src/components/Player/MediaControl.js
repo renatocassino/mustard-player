@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Slider from 'material-ui/Slider'
 import { lifecycle, compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
 import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
@@ -48,13 +47,13 @@ const MediaControl = ({
         </Button>
       </ButtonGroup>
 
-      <Slider
+      {/* <Slider
         min={1} max={200}
         onChange={(ev, value) => {
           var zoomLevel = Number(value)
           wavesurfer.zoom(zoomLevel)
         }}
-      />
+      /> */}
     </React.Fragment>
   )
 }
