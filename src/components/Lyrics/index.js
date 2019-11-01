@@ -24,7 +24,7 @@ const Lyrics = ({
     <Card>
       {user.logged
         ? <div>Welcome {user.info.givenName}!</div>
-        : <a href="http://api.mustardplayer.io/auth"><img src="/btn_google_signin_dark_pressed_web@2x.png" alt="login" /></a>
+        : <div>You must make login to see lyrics</div>
       }
 
       {user.logged && (

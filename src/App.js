@@ -13,6 +13,7 @@ import Logo from './components/Logo'
 import Lyrics from './components/Lyrics'
 import './App.css'
 import { Grid } from '@material-ui/core'
+import Header from './components/Header'
 
 window.store = stores
 
@@ -23,6 +24,7 @@ const App = () => {
     >
       <Provider {...stores}>
         <div>
+          <Header />
           <Container>
             <Logo />
             <Player />
