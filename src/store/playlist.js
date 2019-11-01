@@ -39,6 +39,16 @@ class Playlist {
     if (!this.song) return
     this.song.cuePoints = this.song.cuePoints.filter((cuePoint) => cuePoint.id !== id)
   }
+
+  deleteSong(index) {
+    const newSongs = this.songs
+      .map((song, idx) => idx === index ? null : song)
+      .filter(s => s)
+
+    this.songs.replace(newSongs)
+    if (this.currentSong >= index) this.currentSong -= 1
+    if (this.currentSong < 0) this.currentSong = null
+  }
 }
 
 decorate(Playlist, {

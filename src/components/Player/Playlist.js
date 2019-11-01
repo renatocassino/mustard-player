@@ -14,7 +14,7 @@ const Playlist = ({ wavesurfer, playlist }) => {
   const deleteSong = (songId) => {
     const url = playlist.songs[playlist.currentSong].mediaInfo.url
     URL.revokeObjectURL(url)
-    // dispatch(deleteSongToPlaylist(songId))
+    playlist.deleteSong(songId)
   }
 
   return (
@@ -31,11 +31,13 @@ const Playlist = ({ wavesurfer, playlist }) => {
             style={{ backgroundColor: idx !== playlist.currentSong ? '#FAFAFA' : '#DCEDC8' }}
           >
             <ListItemText primary={song.mediaInfo.title} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => deleteSong(idx)}>
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
+            {idx !== playlist.currentSong && (
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete" onClick={() => deleteSong(idx)}>
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            )}
           </ListItem>
         )
       })}
