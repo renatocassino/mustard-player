@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { fancyTimeFormat } from '../../helpers/time'
-import { Icon } from 'react-fa'
 import IconButton from '@material-ui/core/IconButton'
 import PlayIcon from '@material-ui/icons/PlayArrowOutlined'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -11,6 +10,8 @@ import { compose } from 'recompose'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import TextField from '@material-ui/core/TextField'
+import AddIcon from '@material-ui/icons/Add';
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 
 export const deleteCuePoint = (playlist, cuePoint, wavesurfer) => {
   playlist.removeCuePoint(cuePoint.id)
@@ -105,7 +106,7 @@ const CuePoints = ({ wavesurfer, player, playlist }) => {
           onClick={() => toggleActive(player, wavesurfer)}
           style={{ color: player.loopActive ? 'rgba(0, 100, 0, 0.6)' : null, fontSize: '20px' }}
         >
-          <Icon name="retweet" />
+          <RotateLeftIcon />
         </IconButton>
 
         <IconButton
@@ -113,7 +114,7 @@ const CuePoints = ({ wavesurfer, player, playlist }) => {
           onClick={() => addLoop(player, wavesurfer, playlist)}
           style={{fontSize: '20px'}}
         >
-          <Icon name="plus" />
+          <AddIcon />
         </IconButton>
       </div>
       <div className="cue-point__points-area">
