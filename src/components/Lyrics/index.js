@@ -35,10 +35,6 @@ const Lyrics = ({
           }
         </>
       )}
-
-      {user.logged && <div>
-        <button onClick={() => user.logout()}>Logout</button>
-      </div>}
     </Card>
   )
 }

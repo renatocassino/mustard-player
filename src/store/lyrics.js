@@ -55,10 +55,15 @@ class Lyrics {
 
   updateLyric(data) {
     this.lyric = data
-    this.list = this.list.map(lyric => lyric.id === data.id
-      ? data
-      : lyric
-    )
+    if (this.list.find(l => l.id === data.id)) {
+      this.list = this.list.map(lyric => lyric.id === data.id
+        ? data
+        : lyric
+      )
+      return
+    }
+
+    this.list.replace([...this.list.map(l => l), data])
   }
 
   async delete(id) {
