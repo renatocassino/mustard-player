@@ -14,7 +14,7 @@ const Logo = () => {
 
   return (
     <Wrapper>
-      <img src={`${baseUrl}/logo.png`} alt="Mustard Player" />
+      <img src={`${baseUrl}/logo.png`} style={{ maxWidth: '90%' }} alt="Mustard Player" />
     </Wrapper>
   )
 }
