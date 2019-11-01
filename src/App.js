@@ -13,7 +13,7 @@ import { Grid } from '@material-ui/core'
 import Header from './components/Header'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/deepPurple';
-import green from '@material-ui/core/colors/green';
+import green from '@material-ui/core/colors/yellow';
 
 const theme = createMuiTheme({
   palette: {
