@@ -26,7 +26,7 @@ const ListOfWords = ({
 
   return (
     <div>
-      <List dense>
+      <List dense style={{ maxHeight: '300px', overflowY: 'auto' }}>
         {listOfWords && listOfWords.length === 0 && (
           <ListItem>
             <ListItemText
