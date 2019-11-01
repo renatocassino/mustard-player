@@ -1,6 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { List, ListItem } from 'material-ui/List'
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Subheader from 'material-ui/Subheader'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
@@ -18,20 +22,21 @@ const Playlist = ({ wavesurfer, playlist }) => {
       <Subheader>Playlist</Subheader>
       {playlist.songs.map((song, idx) => {
         return (
-          <ListItem key={idx}
+          <ListItem button key={idx}
             disabled={idx === playlist.currentSong}
             onClick={() => {
               wavesurfer.load(song.mediaInfo.url)
               playlist.currentSong = idx
             }}
             style={{ backgroundColor: idx !== playlist.currentSong ? '#FAFAFA' : '#DCEDC8' }}
-            primaryText={song.mediaInfo.title}
-            rightIcon={
-              <a onClick={(ev) => { ev.stopPropagation(); deleteSong(idx) }}>
+          >
+            <ListItemText primary={song.mediaInfo.title} />
+            <ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="delete" onClick={() => deleteSong(idx)}>
                 <DeleteIcon />
-              </a>
-            }
-          />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
         )
       })}
     </List>

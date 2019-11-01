@@ -33,7 +33,7 @@ const LyricForm = ({
       </FormControl>
     </div>
 
-    <Button onClick={() => lyrics.saveLyric()}>Save lyric</Button>
+    <Button variant="contained" color="primary" onClick={() => lyrics.saveLyric()}>Save lyric</Button>
   </div>
 }
 
