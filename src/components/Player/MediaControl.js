@@ -1,53 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'react-fa'
-import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
-import RaisedButton from 'material-ui/RaisedButton'
 import Slider from 'material-ui/Slider'
-import { withState } from 'recompose'
 import { lifecycle, compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
 import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
+import StopIcon from '@material-ui/icons/Stop';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import VolumeDownIcon from '@material-ui/icons/VolumeDown';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 const volumes = [
-  {value: 0, icon: 'off'},
-  {value: 0.5, icon: 'down'},
-  {value: 1, icon: 'up'}
+  {value: 0, icon: VolumeOffIcon},
+  {value: 0.5, icon: VolumeDownIcon},
+  {value: 1, icon: VolumeUpIcon}
 ]
-
-const VolumeButton = withState('volume', 'setVolume', 2)(({
-  volume,
-  setVolume,
-}) => {
-  const currentVolume = volumes[volume]
-
-  return (
-    <RaisedButton onClick={() => {
-      const newIdxVolume = volume+1 >= volumes.length ? 0 : volume+1
-      const newVolume = volumes[newIdxVolume]
-      window.wavesurfer.setVolume(newVolume.value)
-      setVolume(newIdxVolume)
-    }}>
-      <Icon name={`volume-${currentVolume.icon}`} />
-    </RaisedButton>
-  )
-})
 
 const MediaControl = ({
   wavesurfer = {},
   player,
 }) => {
   const { isPlaying } = player
+  const [volume, setVolume] = useState(2);
+  const VolumeIcon = volumes[volume].icon
+
+  const handleVolume = () => {
+    const newIdxVolume = volume+1 >= volumes.length ? 0 : volume+1
+    const newVolume = volumes[newIdxVolume]
+    window.wavesurfer.setVolume(newVolume.value)
+    setVolume(newIdxVolume)
+  }
 
   return (
     <React.Fragment>
-      <Toolbar>
-        <ToolbarGroup>
-          <RaisedButton onClick={() => wavesurfer.playPause()}>{<Icon name={isPlaying ? 'pause' : 'play'} />}</RaisedButton>
-          <RaisedButton onClick={() => wavesurfer.stop()}><Icon name="stop" /></RaisedButton>
-          <VolumeButton />
-        </ToolbarGroup>
-      </Toolbar>
+      <ButtonGroup size="small" aria-label="small outlined button group">
+        <Button onClick={() => wavesurfer.playPause()}>
+          {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+        </Button>
+        <Button onClick={() => wavesurfer.stop()}>
+          <StopIcon />
+        </Button>
+        <Button onClick={handleVolume}>
+          <VolumeIcon />
+        </Button>
+      </ButtonGroup>
+
       <Slider
         min={1} max={200}
         onChange={(ev, value) => {
