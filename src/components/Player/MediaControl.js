@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react'
 import { addLoop, toggleActive, deleteCuePoint } from './CuePoint'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Slider from '@material-ui/core/Slider';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import StopIcon from '@material-ui/icons/Stop';
@@ -47,13 +48,13 @@ const MediaControl = ({
         </Button>
       </ButtonGroup>
 
-      {/* <Slider
+      <Slider
         min={1} max={200}
-        onChange={(ev, value) => {
+        onChange={(_, value) => {
           var zoomLevel = Number(value)
           wavesurfer.zoom(zoomLevel)
         }}
-      /> */}
+      />
     </React.Fragment>
   )
 }
