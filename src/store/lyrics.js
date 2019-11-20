@@ -45,6 +45,15 @@ class Lyrics {
     this.lyric.title = title
   }
 
+  setLyricText(lyric) {
+    this.lyric.lyric = lyric
+  }
+
+  addLyric(data) {
+    this.list.push(data)
+    debugger
+  }
+
   async saveLyric() {
     try {
       this.loading = true
@@ -72,8 +81,6 @@ class Lyrics {
   }
 
   async delete(id) {
-    await deleteLyric(id)
-    this.lyric = null
     this.list = this.list.map(lyric => lyric.id === id
       ? null
       : lyric

@@ -30,6 +30,14 @@ query {
 }
 `
 
+const DELETE_LYRIC = gql`
+mutation($id: String) {
+  deleteLyric(id: $id) {
+    response
+  }
+}
+`
+
 const ListLyrics = ({
   lyrics,
   client,
@@ -46,9 +54,26 @@ const ListLyrics = ({
         }
       }
     }).then(({ data }) => {
+      // Solve this
       lyrics.setLyrics(data.getLyrics)
     });
   }, [])
+
+  const deleteLyric = (id) => {
+    client.mutate({
+      mutation: DELETE_LYRIC,
+      variables: {
+        id,
+      },
+      context: {
+        headers: {
+          authorization: `Bearer ${localStorage.token}`
+        }
+      }
+    }).then(() => {
+      lyrics.delete(id)
+    });
+  }
 
   if (!lyrics.list) {
     return <div>Loading....</div>
@@ -95,7 +120,7 @@ const ListLyrics = ({
             Cancel
           </Button>
           <Button onClick={() => {
-            lyrics.delete(lyricId)
+            deleteLyric(lyricId)
             setOpen(false)
           }} color="primary">
             Yes, delete
