@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "http://mustardplayer.io/static/css/main.b100e6da.chunk.css",
+    "main.js": "http://mustardplayer.io/static/js/main.e308883b.chunk.js",
+    "main.js.map": "http://mustardplayer.io/static/js/main.e308883b.chunk.js.map",
+    "runtime-main.js": "http://mustardplayer.io/static/js/runtime-main.302da2a4.js",
+    "runtime-main.js.map": "http://mustardplayer.io/static/js/runtime-main.302da2a4.js.map",
+    "static/js/2.b7570a7c.chunk.js": "http://mustardplayer.io/static/js/2.b7570a7c.chunk.js",
+    "static/js/2.b7570a7c.chunk.js.map": "http://mustardplayer.io/static/js/2.b7570a7c.chunk.js.map",
+    "index.html": "http://mustardplayer.io/index.html",
+    "precache-manifest.08e41964314461c673133fd1212492f1.js": "http://mustardplayer.io/precache-manifest.08e41964314461c673133fd1212492f1.js",
+    "service-worker.js": "http://mustardplayer.io/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "http://mustardplayer.io/static/css/main.b100e6da.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.302da2a4.js",
+    "static/js/2.b7570a7c.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.e308883b.chunk.js"
+  ]
+}
