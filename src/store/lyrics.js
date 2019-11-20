@@ -13,6 +13,7 @@ class Lyrics {
 
   async loadLyrics() {
     if (this.list) return
+
     const lyrics = await getLyrics()
     if (lyrics) {
       this.list = lyrics.data

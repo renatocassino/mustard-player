@@ -5,6 +5,25 @@ import ListItemText from '@material-ui/core/ListItemText'
 import debounce from 'lodash/debounce'
 import { getWordsToRhyme } from '../../api/rhyme'
 
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+const RHYMES_WORDS = gql`
+query($word: String) {
+  getRhymes(word: $word) {
+    links {
+      last
+      previous
+      next
+    }
+    data {
+      language
+      words
+    }
+  }
+}
+`
+
 const debounceGet = debounce((currentWord, setListOfWords) => {
   getWordsToRhyme(currentWord).then(list => {
     setListOfWords(list)
@@ -14,15 +33,16 @@ const debounceGet = debounce((currentWord, setListOfWords) => {
 const ListOfWords = ({
   word
 }) => {
-  const [listOfWords, setListOfWords] = useState([])
+  let listOfWords = []
+  const { loading, error, data } = useQuery(RHYMES_WORDS, { variables: { word } })
+  if (loading) return <div>Loading...</div>
 
-  useEffect(() => {
-    if (word === '') {
-      setListOfWords([])
-    }
-
-    debounceGet(word, setListOfWords)
-  }, [word])
+  if (error) {
+    console.log(error)
+    listOfWords = []
+  } else {
+    listOfWords = data.getRhymes.data.words || []
+  }
 
   return (
     <div>
