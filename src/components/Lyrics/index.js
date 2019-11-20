@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react'
 import ListLyrics from './ListLyrics'
 import { Card } from '@material-ui/core'
 import LyricForm from './LyricForm'
+import { ApolloConsumer } from '@apollo/react-hooks';
 
 const Lyrics = ({
   user,
@@ -20,6 +21,9 @@ const Lyrics = ({
 
   if (lyrics.loading) return <div>Loading....</div>
 
+  // DONT REMOVE THIS!
+  console.log(lyrics.lyric)
+
   return (
     <Card>
       {user.logged
@@ -28,12 +32,16 @@ const Lyrics = ({
       }
 
       {user.logged && (
-        <>
-          {lyrics.lyric
-            ? <LyricForm />
-            : <ListLyrics />
-          }
-        </>
+        <ApolloConsumer>
+          {client => (
+            <>
+              {lyrics.lyric
+                ? <LyricForm client={client}  />
+                : <ListLyrics client={client} />
+              }
+            </>
+          )}
+        </ApolloConsumer>
       )}
     </Card>
   )

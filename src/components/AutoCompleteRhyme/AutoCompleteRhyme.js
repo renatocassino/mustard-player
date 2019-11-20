@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ListOfWords from './ListOfWords'
-import { getWordsToRhyme } from '../../api/rhyme'
 import TextField from '@material-ui/core/TextField'
 import debounce from 'lodash/debounce'
 import Card from '@material-ui/core/Card'

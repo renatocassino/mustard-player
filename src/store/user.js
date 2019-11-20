@@ -6,8 +6,8 @@ class User {
   info = {}
 
   init() {
-    if (sessionStorage.token) {
-      this.setToken(sessionStorage.token)
+    if (localStorage.token) {
+      this.setToken(localStorage.token)
     }
   }
 
@@ -19,7 +19,7 @@ class User {
 
     this.logged = true
     this.token = token
-    sessionStorage.token = token
+    localStorage.token = token
 
     this.setInfo()
 
@@ -35,7 +35,7 @@ class User {
   logout() {
     this.logged = false
     this.token = null
-    sessionStorage.removeItem('token')
+    localStorage.removeItem('token')
   }
 }
 

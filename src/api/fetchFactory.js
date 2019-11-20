@@ -7,7 +7,7 @@ export default (url, data = {}) => (
     ...data,
     headers: {
       ...data.headers || {},
-      authorization: `Bearer ${sessionStorage.token}`,
+      authorization: `Bearer ${localStorage.token}`,
     },
     mode: 'cors',
   })

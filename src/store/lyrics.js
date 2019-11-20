@@ -11,6 +11,10 @@ class Lyrics {
   list = null
   loading = false
 
+  setLyrics(lyrics) {
+    this.list = lyrics
+  }
+
   async loadLyrics() {
     if (this.list) return
 
@@ -33,12 +37,12 @@ class Lyrics {
     if (lyric) this.lyric = {...lyric}
   }
 
-  setTitle(title) {
-    this.lyric.title = title
+  setLyric(lyric) {
+    this.lyric = lyric
   }
 
-  setLyric(lyric) {
-    this.lyric.lyric = lyric
+  setTitle(title) {
+    this.lyric.title = title
   }
 
   async saveLyric() {

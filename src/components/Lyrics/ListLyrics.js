@@ -13,20 +13,42 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
+import { gql } from 'apollo-boost';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const GET_LYRICS = gql`
+query {
+  getLyrics {
+    title
+    id
+    lyric
+    updatedAt
+  }
+}
+`
+
 const ListLyrics = ({
   lyrics,
+  client,
 }) => {
-  useEffect(() => {
-    lyrics.loadLyrics()
-  }, [])
-
   const [open, setOpen] = useState(false)
   const [lyricId, setLyricId] = useState(null)
+
+  useEffect(() => {
+    client.query({
+      query: GET_LYRICS,
+      context: {
+        headers: {
+          authorization: `Bearer ${localStorage.token}`
+        }
+      }
+    }).then(({ data }) => {
+      lyrics.setLyrics(data.getLyrics)
+    });
+  }, [])
 
   if (!lyrics.list) {
     return <div>Loading....</div>
@@ -41,7 +63,7 @@ const ListLyrics = ({
         {lyrics.list.map(lyric => (
           <ListItem
             button
-            onClick={() => lyrics.setLyricById(lyric.id)}
+            onClick={() => lyrics.setLyric({ ...lyric })}
             key={lyric.id}
           >
             <ListItemText primary={lyric.title} />
